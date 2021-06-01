@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommentService.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">NoteWork</a> &gt; <a href="index.source.html" class="el_package">org.Note</a> &gt; <span class="el_source">CommentService.kt</span></div><h1>CommentService.kt</h1><pre class="source lang-java linenums">package org.Note
+
+import org.Note.NoteService.Companion.notes
+
+
+<span class="nc" id="L6">class CommentService : Crud&lt;Comment&gt; {</span>
+<span class="nc" id="L7">    var comments: MutableList&lt;Comment&gt; = arrayListOf()</span>
+
+    override fun add(comment: Comment): Int {
+<span class="nc bnc" id="L10" title="All 2 branches missed.">        for ((index, note) in notes.withIndex()) {</span>
+<span class="nc bnc" id="L11" title="All 4 branches missed.">            if ((notes[index].noteId == comment.noteId) &amp;&amp; !notes[index].deleted) {</span>
+<span class="nc bnc" id="L12" title="All 2 branches missed.">                val comment = if (comments.isEmpty()) comment.copy(commentId = 1)</span>
+<span class="nc" id="L13">                else comment.copy(commentId = comments.last().commentId + 1)</span>
+<span class="nc" id="L14">                comments.plusAssign(comment)</span>
+
+            }
+        }
+<span class="nc" id="L18">        return comments.last().commentId</span>
+    }
+
+    override fun delete(idDelete: Int): Boolean {
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">            if (notes[index].noteId === (idDelete)) {</span>
+<span class="nc" id="L24">                comment.deleted = true</span>
+<span class="nc" id="L25">                return true</span>
+            }
+        }
+<span class="nc" id="L28">        return false</span>
+    }
+
+    override fun edit(commentNew: Comment): Boolean {
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (comments[index].commentId == commentNew.commentId) {</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">                if (!comments[index].deleted) {</span>
+<span class="nc" id="L35">                    commentNew.ownerId = comments[index].ownerId</span>
+<span class="nc" id="L36">                    commentNew.noteId = comments[index].noteId</span>
+<span class="nc" id="L37">                    comments[index] = commentNew</span>
+<span class="nc" id="L38">                    return true</span>
+                }
+            }
+        }
+<span class="nc" id="L42">        return false</span>
+    }
+
+    override fun getList(ids: Int): List&lt;Comment&gt; {
+<span class="nc" id="L46">        var outputComments: List&lt;Comment&gt; = arrayListOf()</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        for ((index, note) in comments.withIndex()) {</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (ids == comments[index].noteId) {</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">                if (!comments[index].deleted) outputComments += comments[index]</span>
+<span class="nc" id="L50">            } else continue</span>
+        }
+<span class="nc" id="L52">        return outputComments</span>
+    }
+
+    override fun getById(idSearch: Int): Comment? {
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (comments[index].commentId == idSearch) {</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">                if (!comments[index].deleted)</span>
+<span class="nc" id="L59">                    return comment</span>
+<span class="nc" id="L60">                break</span>
+            }
+        }
+<span class="nc" id="L63">        throw  CommentNotFoundException()</span>
+    }
+
+    override fun restoreComment(idRestore: Int): Boolean {
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (notes[index].noteId == idRestore) {</span>
+<span class="nc" id="L69">                comment.deleted = false</span>
+<span class="nc" id="L70">                return true</span>
+            }
+        }
+<span class="nc" id="L73">        return false</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

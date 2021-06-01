@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">NoteWork</a> &gt; <a href="index.source.html" class="el_package">org.Note</a> &gt; <span class="el_source">Main.kt</span></div><h1>Main.kt</h1><pre class="source lang-java linenums">package org.Note
+
+fun main() {
+<span class="nc" id="L4">    println(&quot;_______Note.add____________&quot;)</span>
+
+<span class="nc" id="L6">    val m = NoteService()</span>
+<span class="nc" id="L7">    val result = m.add(Note(ownerId = 2, text = &quot;Проверка333&quot;))</span>
+<span class="nc" id="L8">    println(result)</span>
+<span class="nc" id="L9">    val r = NoteService()</span>
+<span class="nc" id="L10">    r.add(Note(ownerId = 2, text = &quot;Проверка333&quot;))</span>
+<span class="nc" id="L11">    r.add(Note(ownerId = 3, text = &quot;Проверка3&quot;))</span>
+<span class="nc" id="L12">    r.add(Note(ownerId = 7, text = &quot;Проверка7&quot;))</span>
+<span class="nc" id="L13">    r.add(Note(ownerId = 8, text = &quot;Проверка8&quot;))</span>
+<span class="nc" id="L14">    r.add(Note(ownerId = 3, text = &quot;Проверка!&quot;))</span>
+<span class="nc" id="L15">    println(&quot;_______Note.edit____________&quot;)</span>
+<span class="nc" id="L16">    r.edit(Note(noteId = 2, 3, text = &quot;Проверка9&quot;))</span>
+<span class="nc" id="L17">    println(&quot;_______Note.deleted____________&quot;)</span>
+<span class="nc" id="L18">     r.delete(1)</span>
+<span class="nc" id="L19">    println(&quot;_______Note.getById____________&quot;)</span>
+<span class="nc" id="L20">    println(r.getById(3))</span>
+
+<span class="nc" id="L22">    println(&quot;_______Note.getList____________&quot;)</span>
+<span class="nc" id="L23">    println(r.getList(9))</span>
+
+<span class="nc" id="L25">    println(&quot;_______Comments.add____________&quot;)</span>
+<span class="nc" id="L26">    val c = CommentService()</span>
+<span class="nc" id="L27">    c.add(Comment(noteId = 3, message = &quot;Hi&quot;))</span>
+<span class="nc" id="L28">    c.add(Comment(noteId = 2, message = &quot;Hello World&quot;))</span>
+<span class="nc" id="L29">    c.add(Comment(noteId = 3, message = &quot;Hello&quot;))</span>
+<span class="nc" id="L30">    c.add(Comment(noteId = 1, message = &quot;He-he&quot;))</span>
+<span class="nc" id="L31">    println(c.comments.toList())</span>
+<span class="nc" id="L32">    println(&quot;_______Comments.delete____________&quot;)</span>
+<span class="nc" id="L33">    c.delete(4)</span>
+<span class="nc" id="L34">    println(c.comments.toList())</span>
+<span class="nc" id="L35">    println(&quot;_______Comments.edit____________&quot;)</span>
+<span class="nc" id="L36">    c.edit(Comment(commentId = 1, message = &quot;Uaaauuu, it is cool!!!&quot;))</span>
+<span class="nc" id="L37">    println(c.comments.toList())</span>
+<span class="nc" id="L38">    println(&quot;_______Comments.getList____________&quot;)</span>
+<span class="nc" id="L39">    c.getList(3)</span>
+<span class="nc" id="L40">    println(c.getList(3))</span>
+<span class="nc" id="L41">    println(&quot;_______Comments.getById____________&quot;)</span>
+<span class="nc" id="L42">    println(c.getById(2))</span>
+<span class="nc" id="L43">    println(&quot;_______Comments.restoreComment____________&quot;)</span>
+<span class="nc" id="L44">    println(c.comments.toList())</span>
+<span class="nc" id="L45">    c.restoreComment(1)</span>
+<span class="nc" id="L46">    println(c.comments.toList())</span>
+
+<span class="nc" id="L48">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

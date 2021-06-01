@@ -1,0 +1,48 @@
+package org.Note
+
+fun main() {
+    println("_______Note.add____________")
+
+    val m = NoteService()
+    val result = m.add(Note(ownerId = 2, text = "Проверка333"))
+    println(result)
+    val r = NoteService()
+    r.add(Note(ownerId = 2, text = "Проверка333"))
+    r.add(Note(ownerId = 3, text = "Проверка3"))
+    r.add(Note(ownerId = 7, text = "Проверка7"))
+    r.add(Note(ownerId = 8, text = "Проверка8"))
+    r.add(Note(ownerId = 3, text = "Проверка!"))
+    println("_______Note.edit____________")
+    r.edit(Note(noteId = 2, 3, text = "Проверка9"))
+    println("_______Note.deleted____________")
+     r.delete(1)
+    println("_______Note.getById____________")
+    println(r.getById(3))
+
+    println("_______Note.getList____________")
+    println(r.getList(9))
+
+    println("_______Comments.add____________")
+    val c = CommentService()
+    c.add(Comment(noteId = 3, message = "Hi"))
+    c.add(Comment(noteId = 2, message = "Hello World"))
+    c.add(Comment(noteId = 3, message = "Hello"))
+    c.add(Comment(noteId = 1, message = "He-he"))
+    println(c.comments.toList())
+    println("_______Comments.delete____________")
+    c.delete(4)
+    println(c.comments.toList())
+    println("_______Comments.edit____________")
+    c.edit(Comment(commentId = 1, message = "Uaaauuu, it is cool!!!"))
+    println(c.comments.toList())
+    println("_______Comments.getList____________")
+    c.getList(3)
+    println(c.getList(3))
+    println("_______Comments.getById____________")
+    println(c.getById(2))
+    println("_______Comments.restoreComment____________")
+    println(c.comments.toList())
+    c.restoreComment(1)
+    println(c.comments.toList())
+
+}
