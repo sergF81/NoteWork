@@ -1,16 +1,9 @@
 package org.Note
-import org.Note.NoteService
+
 
 class CommentService(val noteService: NoteService) : Crud<Comment> {
 
     var comments: MutableList<Comment> = arrayListOf()
-
-    fun add1(comment: Comment){
-     //   for ((index, note) in r.getAll().withIndex()) {
-            println(noteService.getAll())
-
-    //        }
-        }
 
 
     override fun add(comment: Comment): Int {

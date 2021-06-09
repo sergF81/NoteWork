@@ -1,84 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommentService.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">NoteWork</a> &gt; <a href="index.source.html" class="el_package">org.Note</a> &gt; <span class="el_source">CommentService.kt</span></div><h1>CommentService.kt</h1><pre class="source lang-java linenums">package org.Note
-import org.Note.NoteService
+
 
 <span class="pc" id="L4">class CommentService(val noteService: NoteService) : Crud&lt;Comment&gt; {</span>
 
 <span class="pc" id="L6">    var comments: MutableList&lt;Comment&gt; = arrayListOf()</span>
 
-    fun add1(comment: Comment){
-     //   for ((index, note) in r.getAll().withIndex()) {
-<span class="nc" id="L10">            println(noteService.getAll())</span>
-
-    //        }
-<span class="nc" id="L13">        }</span>
-
 
     override fun add(comment: Comment): Int {
-<span class="fc bfc" id="L17" title="All 2 branches covered.">        for ((index, note) in noteService.getAll().withIndex()) {</span>
-<span class="pc bpc" id="L18" title="1 of 4 branches missed.">            if ((note.noteId == comment.noteId) &amp;&amp; !note.deleted) {</span>
+<span class="fc bfc" id="L10" title="All 2 branches covered.">        for ((index, note) in noteService.getAll().withIndex()) {</span>
+<span class="pc bpc" id="L11" title="1 of 4 branches missed.">            if ((note.noteId == comment.noteId) &amp;&amp; !note.deleted) {</span>
 
-<span class="pc bpc" id="L20" title="1 of 2 branches missed.">                val comment = if (comments.isEmpty()) comment.copy(commentId = 1)</span>
-<span class="nc" id="L21">                else comment.copy(commentId = comments.last().commentId + 1)</span>
-<span class="fc" id="L22">                comments.plusAssign(comment)</span>
+<span class="pc bpc" id="L13" title="1 of 2 branches missed.">                val comment = if (comments.isEmpty()) comment.copy(commentId = 1)</span>
+<span class="nc" id="L14">                else comment.copy(commentId = comments.last().commentId + 1)</span>
+<span class="fc" id="L15">                comments.plusAssign(comment)</span>
 
             }
         }
-<span class="fc" id="L26">        return comments.last().commentId</span>
+<span class="fc" id="L19">        return comments.last().commentId</span>
     }
 
     override fun delete(idDelete: Int): Boolean {
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (noteService.getAll()[index].noteId === (idDelete)) {</span>
-<span class="nc" id="L32">                comment.deleted = true</span>
-<span class="nc" id="L33">                return true</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">            if (noteService.getAll()[index].noteId === (idDelete)) {</span>
+<span class="nc" id="L25">                comment.deleted = true</span>
+<span class="nc" id="L26">                return true</span>
             }
         }
-<span class="nc" id="L36">        return false</span>
+<span class="nc" id="L29">        return false</span>
     }
 
     override fun edit(commentNew: Comment): Boolean {
-<span class="nc bnc" id="L40" title="All 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (comments[index].commentId == commentNew.commentId) {</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">                if (!comments[index].deleted) {</span>
-<span class="nc" id="L43">                    commentNew.ownerId = comments[index].ownerId</span>
-<span class="nc" id="L44">                    commentNew.noteId = comments[index].noteId</span>
-<span class="nc" id="L45">                    comments[index] = commentNew</span>
-<span class="nc" id="L46">                    return true</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (comments[index].commentId == commentNew.commentId) {</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">                if (!comments[index].deleted) {</span>
+<span class="nc" id="L36">                    commentNew.ownerId = comments[index].ownerId</span>
+<span class="nc" id="L37">                    commentNew.noteId = comments[index].noteId</span>
+<span class="nc" id="L38">                    comments[index] = commentNew</span>
+<span class="nc" id="L39">                    return true</span>
                 }
             }
         }
-<span class="nc" id="L50">        return false</span>
+<span class="nc" id="L43">        return false</span>
     }
 
     override fun getList(ids: Int): List&lt;Comment&gt; {
-<span class="nc" id="L54">        var outputComments: List&lt;Comment&gt; = arrayListOf()</span>
-<span class="nc bnc" id="L55" title="All 2 branches missed.">        for ((index, note) in comments.withIndex()) {</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (ids == comments[index].noteId) {</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">                if (!comments[index].deleted) outputComments += comments[index]</span>
-<span class="nc" id="L58">            } else continue</span>
+<span class="nc" id="L47">        var outputComments: List&lt;Comment&gt; = arrayListOf()</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        for ((index, note) in comments.withIndex()) {</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            if (ids == comments[index].noteId) {</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">                if (!comments[index].deleted) outputComments += comments[index]</span>
+<span class="nc" id="L51">            } else continue</span>
         }
-<span class="nc" id="L60">        return outputComments</span>
+<span class="nc" id="L53">        return outputComments</span>
     }
 
     override fun getById(idSearch: Int): Comment? {
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
-<span class="pc bpc" id="L65" title="1 of 2 branches missed.">            if (comments[index].commentId == idSearch) {</span>
-<span class="pc bpc" id="L66" title="1 of 2 branches missed.">                if (!comments[index].deleted)</span>
-<span class="fc" id="L67">                    return comment</span>
-<span class="nc" id="L68">                break</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">            if (comments[index].commentId == idSearch) {</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">                if (!comments[index].deleted)</span>
+<span class="fc" id="L60">                    return comment</span>
+<span class="nc" id="L61">                break</span>
             }
         }
-<span class="nc" id="L71">        throw  CommentNotFoundException()</span>
+<span class="nc" id="L64">        throw  CommentNotFoundException()</span>
     }
 
     override fun restoreComment(idRestore: Int): Boolean {
-<span class="nc bnc" id="L75" title="All 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
-<span class="nc bnc" id="L76" title="All 2 branches missed.">            if (noteService.getAll()[index].noteId == idRestore) {</span>
-<span class="nc" id="L77">                comment.deleted = false</span>
-<span class="nc" id="L78">                return true</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        for ((index, comment) in comments.withIndex()) {</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (noteService.getAll()[index].noteId == idRestore) {</span>
+<span class="nc" id="L70">                comment.deleted = false</span>
+<span class="nc" id="L71">                return true</span>
             }
         }
-<span class="nc" id="L81">        return false</span>
+<span class="nc" id="L74">        return false</span>
     }
 
 

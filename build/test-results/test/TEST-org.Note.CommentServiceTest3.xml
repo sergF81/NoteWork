@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.Note.CommentServiceTest3" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-06-09T05:10:15" hostname="TOCHKA0996" time="0.124">
+<testsuite name="org.Note.CommentServiceTest3" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-06-09T05:35:36" hostname="TOCHKA0996" time="0.187">
   <properties/>
-  <testcase name="getById" classname="org.Note.CommentServiceTest3" time="0.124"/>
+  <testcase name="getById" classname="org.Note.CommentServiceTest3" time="0.187"/>
   <system-out><![CDATA[[Note(noteId=1, ownerId=3, title=, text=Проверка3, deleted=false), Note(noteId=2, ownerId=4, title=, text=Проверка4, deleted=false)]
 [Comment(commentId=1, noteId=2, ownerId=0, message=Hi, deleted=false)]
 ]]></system-out>
