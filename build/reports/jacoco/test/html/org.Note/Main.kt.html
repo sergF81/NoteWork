@@ -15,35 +15,38 @@ fun main() {
 <span class="nc" id="L15">    println(&quot;_______Note.edit____________&quot;)</span>
 <span class="nc" id="L16">    r.edit(Note(noteId = 2, 3, text = &quot;Проверка9&quot;))</span>
 <span class="nc" id="L17">    println(&quot;_______Note.deleted____________&quot;)</span>
-<span class="nc" id="L18">     r.delete(1)</span>
-<span class="nc" id="L19">    println(&quot;_______Note.getById____________&quot;)</span>
-<span class="nc" id="L20">    println(r.getById(3))</span>
+<span class="nc" id="L18">    println(r.getAll())</span>
+        //  r.delete(1)
+<span class="nc" id="L20">    println(r.getAll())</span>
+<span class="nc" id="L21">    println()</span>
+<span class="nc" id="L22">    println(&quot;_______Note.getById____________&quot;)</span>
+<span class="nc" id="L23">    println(r.getById(3))</span>
 
-<span class="nc" id="L22">    println(&quot;_______Note.getList____________&quot;)</span>
-<span class="nc" id="L23">    println(r.getList(9))</span>
+<span class="nc" id="L25">    println(&quot;_______Note.getList____________&quot;)</span>
+<span class="nc" id="L26">    println(r.getList(9))</span>
 
-<span class="nc" id="L25">    println(&quot;_______Comments.add____________&quot;)</span>
-<span class="nc" id="L26">    val c = CommentService()</span>
-<span class="nc" id="L27">    c.add(Comment(noteId = 3, message = &quot;Hi&quot;))</span>
-<span class="nc" id="L28">    c.add(Comment(noteId = 2, message = &quot;Hello World&quot;))</span>
-<span class="nc" id="L29">    c.add(Comment(noteId = 3, message = &quot;Hello&quot;))</span>
-<span class="nc" id="L30">    c.add(Comment(noteId = 1, message = &quot;He-he&quot;))</span>
-<span class="nc" id="L31">    println(c.comments.toList())</span>
-<span class="nc" id="L32">    println(&quot;_______Comments.delete____________&quot;)</span>
-<span class="nc" id="L33">    c.delete(4)</span>
+<span class="nc" id="L28">    println(&quot;_______Comments.add____________&quot;)</span>
+<span class="nc" id="L29">    val c = CommentService(noteService = r)</span>
+<span class="nc" id="L30">    c.add(Comment(noteId = 3, message = &quot;Hi&quot;))</span>
+<span class="nc" id="L31">    c.add(Comment(noteId = 2, message = &quot;Hello World&quot;))</span>
+<span class="nc" id="L32">    c.add(Comment(noteId = 3, message = &quot;Hello&quot;))</span>
+<span class="nc" id="L33">    c.add(Comment(noteId = 5, message = &quot;He-he&quot;))</span>
 <span class="nc" id="L34">    println(c.comments.toList())</span>
-<span class="nc" id="L35">    println(&quot;_______Comments.edit____________&quot;)</span>
-<span class="nc" id="L36">    c.edit(Comment(commentId = 1, message = &quot;Uaaauuu, it is cool!!!&quot;))</span>
+<span class="nc" id="L35">    println(&quot;_______Comments.delete____________&quot;)</span>
+<span class="nc" id="L36">    c.delete(4)</span>
 <span class="nc" id="L37">    println(c.comments.toList())</span>
-<span class="nc" id="L38">    println(&quot;_______Comments.getList____________&quot;)</span>
-<span class="nc" id="L39">    c.getList(3)</span>
-<span class="nc" id="L40">    println(c.getList(3))</span>
-<span class="nc" id="L41">    println(&quot;_______Comments.getById____________&quot;)</span>
-<span class="nc" id="L42">    println(c.getById(2))</span>
-<span class="nc" id="L43">    println(&quot;_______Comments.restoreComment____________&quot;)</span>
-<span class="nc" id="L44">    println(c.comments.toList())</span>
-<span class="nc" id="L45">    c.restoreComment(1)</span>
-<span class="nc" id="L46">    println(c.comments.toList())</span>
+<span class="nc" id="L38">    println(&quot;_______Comments.edit____________&quot;)</span>
+<span class="nc" id="L39">    c.edit(Comment(commentId = 1, message = &quot;Uaaauuu, it is cool!!!&quot;))</span>
+<span class="nc" id="L40">    println(c.comments.toList())</span>
+<span class="nc" id="L41">    println(&quot;_______Comments.getList____________&quot;)</span>
+<span class="nc" id="L42">    c.getList(3)</span>
+<span class="nc" id="L43">    println(c.getList(3))</span>
+<span class="nc" id="L44">    println(&quot;_______Comments.getById____________&quot;)</span>
+<span class="nc" id="L45">    println(c.getById(2))</span>
+<span class="nc" id="L46">    println(&quot;_______Comments.restoreComment____________&quot;)</span>
+<span class="nc" id="L47">    println(c.comments.toList())</span>
+<span class="nc" id="L48">    c.restoreComment(1)</span>
+<span class="nc" id="L49">    println(c.comments.toList())</span>
 
-<span class="nc" id="L48">}</span>
+<span class="nc" id="L51">}</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

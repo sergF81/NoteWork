@@ -3,10 +3,14 @@ package org.Note
 import org.w3c.dom.Entity
 
 class NoteService : Crud<Note> {
-    companion object {
-        var notes: MutableList<Note> = arrayListOf()
-    }
 
+       private var notes: MutableList<Note> = arrayListOf()
+
+
+
+    fun getAll(): MutableList<Note> {
+        return notes
+    }
     override fun add(note: Note): Int {
         val note = if (notes.isEmpty()) note.copy(noteId = 1)
         else note.copy(noteId = notes.last().noteId + 1)

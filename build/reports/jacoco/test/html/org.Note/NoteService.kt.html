@@ -3,69 +3,73 @@
 import org.w3c.dom.Entity
 
 <span class="fc" id="L5">class NoteService : Crud&lt;Note&gt; {</span>
-    companion object {
-<span class="pc" id="L7">        var notes: MutableList&lt;Note&gt; = arrayListOf()</span>
-    }
 
+<span class="fc" id="L7">       private var notes: MutableList&lt;Note&gt; = arrayListOf()</span>
+
+
+
+    fun getAll(): MutableList&lt;Note&gt; {
+<span class="fc" id="L12">        return notes</span>
+    }
     override fun add(note: Note): Int {
-<span class="pc bpc" id="L11" title="1 of 2 branches missed.">        val note = if (notes.isEmpty()) note.copy(noteId = 1)</span>
-<span class="nc" id="L12">        else note.copy(noteId = notes.last().noteId + 1)</span>
-<span class="fc" id="L13">        notes.plusAssign(note)</span>
-<span class="fc" id="L14">        return notes.last().noteId</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        val note = if (notes.isEmpty()) note.copy(noteId = 1)</span>
+<span class="fc" id="L16">        else note.copy(noteId = notes.last().noteId + 1)</span>
+<span class="fc" id="L17">        notes.plusAssign(note)</span>
+<span class="fc" id="L18">        return notes.last().noteId</span>
     }
 
     override fun edit(noteNew: Note): Boolean {
-<span class="nc bnc" id="L18" title="All 2 branches missed.">        for ((index, note) in notes.withIndex()) {</span>
-<span class="nc bnc" id="L19" title="All 2 branches missed.">            if (note.noteId == noteNew.noteId) {</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">                if (note.deleted == false) {</span>
-<span class="nc" id="L21">                    noteNew.ownerId = note.ownerId</span>
-<span class="nc" id="L22">                    notes[index] = noteNew</span>
-<span class="nc" id="L23">                    println(noteNew)</span>
-<span class="nc" id="L24">                    return true</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        for ((index, note) in notes.withIndex()) {</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">            if (note.noteId == noteNew.noteId) {</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">                if (note.deleted == false) {</span>
+<span class="nc" id="L25">                    noteNew.ownerId = note.ownerId</span>
+<span class="nc" id="L26">                    notes[index] = noteNew</span>
+<span class="nc" id="L27">                    println(noteNew)</span>
+<span class="nc" id="L28">                    return true</span>
                 }
             }
 
         }
-<span class="nc" id="L29">        throw  NoteNotFoundException()</span>
+<span class="nc" id="L33">        throw  NoteNotFoundException()</span>
     }
 
     override fun delete(IdDelete: Int): Boolean {
 
-<span class="nc bnc" id="L34" title="All 2 branches missed.">        for ((index, note) in notes.withIndex()) {</span>
-<span class="nc bnc" id="L35" title="All 2 branches missed.">            if (notes[index].noteId === (IdDelete)) {</span>
-<span class="nc" id="L36">                note.deleted = true</span>
-<span class="nc" id="L37">                return true</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for ((index, note) in notes.withIndex()) {</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (notes[index].noteId === (IdDelete)) {</span>
+<span class="fc" id="L40">                note.deleted = true</span>
+<span class="fc" id="L41">                return true</span>
             }
         }
-<span class="nc" id="L40">        throw  NoteNotFoundException()</span>
+<span class="fc" id="L44">        throw  NoteNotFoundException()</span>
     }
 
     override fun getList(ids: Int): List&lt;Note&gt; {
-<span class="nc" id="L44">        var outputNotes: List&lt;Note&gt; = arrayListOf()</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">        for ((index, note) in notes.withIndex()) {</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (ids == notes[index].ownerId) {</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">                if (!notes[index].deleted) outputNotes += notes[index]</span>
-<span class="nc" id="L48">            } else continue</span>
+<span class="nc" id="L48">        var outputNotes: List&lt;Note&gt; = arrayListOf()</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        for ((index, note) in notes.withIndex()) {</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (ids == notes[index].ownerId) {</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                if (!notes[index].deleted) outputNotes += notes[index]</span>
+<span class="nc" id="L52">            } else continue</span>
         }
-<span class="nc" id="L50">        return outputNotes</span>
+<span class="nc" id="L54">        return outputNotes</span>
     }
 
 
 
 
     override fun getById(idSearch: Int): Note? {
-<span class="nc bnc" id="L57" title="All 2 branches missed.">        for ((index, note) in notes.withIndex()) {</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">            if (notes[index].noteId === (idSearch)) {</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">                if (!notes[index].deleted)</span>
-<span class="nc" id="L60">                    return note</span>
-<span class="nc" id="L61">                break</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        for ((index, note) in notes.withIndex()) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (notes[index].noteId === (idSearch)) {</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                if (!notes[index].deleted)</span>
+<span class="nc" id="L64">                    return note</span>
+<span class="nc" id="L65">                break</span>
             }
         }
-<span class="nc" id="L64">        throw  NoteNotFoundException()</span>
+<span class="nc" id="L68">        throw  NoteNotFoundException()</span>
     }
 
     override fun restoreComment(idRestore: Int): Boolean {
-<span class="nc" id="L68">        TODO(&quot;Not yet implemented&quot;)</span>
+<span class="nc" id="L72">        TODO(&quot;Not yet implemented&quot;)</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

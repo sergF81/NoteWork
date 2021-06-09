@@ -1,14 +1,22 @@
 package org.Note
+import org.Note.NoteService
 
-import org.Note.NoteService.Companion.notes
+class CommentService(val noteService: NoteService) : Crud<Comment> {
 
-
-class CommentService : Crud<Comment> {
     var comments: MutableList<Comment> = arrayListOf()
 
+    fun add1(comment: Comment){
+     //   for ((index, note) in r.getAll().withIndex()) {
+            println(noteService.getAll())
+
+    //        }
+        }
+
+
     override fun add(comment: Comment): Int {
-        for ((index, note) in notes.withIndex()) {
-            if ((notes[index].noteId == comment.noteId) && !notes[index].deleted) {
+        for ((index, note) in noteService.getAll().withIndex()) {
+            if ((note.noteId == comment.noteId) && !note.deleted) {
+
                 val comment = if (comments.isEmpty()) comment.copy(commentId = 1)
                 else comment.copy(commentId = comments.last().commentId + 1)
                 comments.plusAssign(comment)
@@ -20,7 +28,7 @@ class CommentService : Crud<Comment> {
 
     override fun delete(idDelete: Int): Boolean {
         for ((index, comment) in comments.withIndex()) {
-            if (notes[index].noteId === (idDelete)) {
+            if (noteService.getAll()[index].noteId === (idDelete)) {
                 comment.deleted = true
                 return true
             }
@@ -65,7 +73,7 @@ class CommentService : Crud<Comment> {
 
     override fun restoreComment(idRestore: Int): Boolean {
         for ((index, comment) in comments.withIndex()) {
-            if (notes[index].noteId == idRestore) {
+            if (noteService.getAll()[index].noteId == idRestore) {
                 comment.deleted = false
                 return true
             }
